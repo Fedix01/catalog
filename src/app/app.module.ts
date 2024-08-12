@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CatalogComponent } from './features/catalog/catalog.component';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule
   ],
   providers: [
     provideClientHydration(),

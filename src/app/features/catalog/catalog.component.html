@@ -1,8 +1,38 @@
 <div class="container">
-    <div class="d-flex justify-content-between"
-     *ngFor="let device of devices">
-<div>
-    {{device.label}}
+    <div *ngIf="active">
+        <h3>Elemento selezionato:</h3>
+        <h4>Nome:{{active.label}} Prezzo:{{active.price}}</h4>
+    </div>
+  <form #f="ngForm" (submit)="save(f)">
+    <input type="text"
+     [ngModel]="active?.label"
+      name="label"
+      class="input-group my-2"
+      placeholder="Inserisci modello"
+      required>
+      
+      <input type="number"
+      [ngModel]="active?.price"
+       name="price"
+      class="input-group"
+      placeholder="Inserisci il prezzo"
+      >
+      <div class="btn-group my-3">
+<button class="btn btn-info" type="submit">{{active ? 'Modifica':'Aggiungi'}}</button>
+<button *ngIf="active" type="button" class="btn btn-warning ms-2" (click)="reset(f)">Reset</button>
+</div>
+  </form>
+    <div class="d-flex justify-content-between my-3"
+     *ngFor="let device of devices"
+     (click)="setActive(device)"
+     [ngClass]="{'active': device.id === active?.id}">
+<div class="d-flex">
+    <div>
+    {{device.label}} 
+    </div>
+    <div class="ms-5">
+    {{device.price}} €
+    </div>
 </div>
     <div>
         <fa-icon [icon]="faTrash" (click)="deleteItem(device)"></fa-icon>

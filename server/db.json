@@ -34,6 +34,16 @@
       "rate": 4,
       "memory": 20,
       "id": "8"
+    },
+    {
+      "id": "0f5d",
+      "label": "ciaociao",
+      "price": 390
+    },
+    {
+      "id": "83e0",
+      "label": "IPhone XXX",
+      "price": 1201
     }
   ],
   "login": {
