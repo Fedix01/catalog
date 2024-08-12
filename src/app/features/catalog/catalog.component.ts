@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import Device from './model/device.model';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -14,7 +13,6 @@ devices:Device[] = [];
 
 active: Device | null = null;
 
-faTrash = faTrash;
   constructor(private http:HttpClient) {
     this.getAll()
    }

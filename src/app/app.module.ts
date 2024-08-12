@@ -7,11 +7,13 @@ import { CatalogComponent } from './features/catalog/catalog.component';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
+import { CatalogListComponent } from './features/catalog/catalog-list/catalog-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CatalogComponent
+    CatalogComponent,
+    CatalogListComponent
   ],
   imports: [
     BrowserModule,
