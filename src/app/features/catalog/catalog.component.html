@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="d-flex justify-content-between"
+     *ngFor="let device of devices">
+<div>
+    {{device.label}}
+</div>
+    <div>
+        <fa-icon [icon]="faTrash" (click)="deleteItem(device)"></fa-icon>
+    </div>
+</div>
+</div>
