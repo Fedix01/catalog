@@ -1,15 +1,21 @@
+<app-navbar></app-navbar>
 <div class="container">
-    <div *ngIf="active">
+  <app-card title="FORM">
+    <div *ngIf="store.active">
         <h3>Elemento selezionato:</h3>
-        <h4>Nome:{{active.label}} Prezzo:{{active.price}}</h4>
+        <h4>Nome:{{store.active.label}} Prezzo:{{store.active.price}}</h4>
     </div>
   <app-catalog-form
-  [active]="active"
-  (save)="save($event)"
-  (reset)="reset()"
+  [active]="store.active"
+  (save)="actions.save($event)"
+  (reset)="actions.reset()"
   ></app-catalog-form>
-   <app-catalog-list [devices]="devices"
-   [active]="active"
-   (setActive)="setActive($event)"
-   (delete)="deleteHandler($event)"></app-catalog-list>
+</app-card>
+<app-card title="ITEM">
+   <app-catalog-list 
+    [devices]="store.devices"
+   [active]="store.active"
+   (setActive)="actions.setActive($event)"
+   (delete)="actions.deleteHandler($event)"></app-catalog-list>
+  </app-card>
 </div>

@@ -3,11 +3,14 @@
 (click)="setActive.emit(device)"
 [ngClass]="{'active': device.id === active?.id}">
 <div class="d-flex">
+
+   <fa-icon class="me-3" [icon]="device.os === 'android' ? faMobileAndroid : faAppleAlt"></fa-icon>
+
 <div>
 {{device.label}} 
 </div>
-<div class="ms-5">
-{{device.price}} €
+<div class="ms-5" [style.color]="device.price > 1000 ? 'red' : null">
+{{device.price | number:'1.2-2'}} €
 </div>
 </div>
 <div>

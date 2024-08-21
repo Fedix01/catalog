@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import Device from '../model/device.model';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faAppleAlt, faMobileAndroid, fas} from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -15,9 +15,13 @@ export class CatalogListComponent {
   @Output() delete: EventEmitter<Device> = new EventEmitter<Device>();
 
   faTrash = faTrash;
+  faAppleAlt = faAppleAlt;
+  faMobileAndroid = faMobileAndroid;
+  fas = fas;
 
   deleteHandler(event: MouseEvent, device: Device) {
     event.stopPropagation();
     this.delete.emit(device);
+
   }
 }

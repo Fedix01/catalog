@@ -1,0 +1,9 @@
+<div class="card my-3" >
+    <div class="card-title bg-dark text-light p-3" style="border-radius: 10px; cursor: pointer;" (click)="opened = !opened">
+        {{title}}
+   <fa-icon class="me-3" [icon]="opened ? faArrowRight : faArrowDown"></fa-icon>
+    </div>
+    <div class="card-body bg-dark text-light p-3" style="border-radius: 10px;" *ngIf="opened">
+        <ng-content></ng-content>
+    </div>
+</div>
