@@ -8,12 +8,14 @@ import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 import { CatalogListComponent } from './features/catalog/catalog-list/catalog-list.component';
+import { CatalogFormComponent } from './features/catalog/catalog-form/catalog-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CatalogComponent,
-    CatalogListComponent
+    CatalogListComponent,
+    CatalogFormComponent
   ],
   imports: [
     BrowserModule,

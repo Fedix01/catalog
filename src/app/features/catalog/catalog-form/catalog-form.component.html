@@ -1,0 +1,32 @@
+<form #f="ngForm" (submit)="saveHandler(f)">
+
+    <input type="text"
+           [ngModel]="active?.label"
+           name="label"
+           required
+           class="form-control"
+           placeholder="Device model"
+    >
+
+    <input type="number"
+           [ngModel]="active?.price"
+           name="price"
+           class="form-control"
+           placeholder="Price">
+
+    <div class="btn-group">
+      <button class="btn btn-info"
+              type="submit"
+              [disabled]="f.invalid">
+        {{active?.id ? 'EDIT' : 'ADD'}}
+      </button>
+
+      <button
+        class="btn btn-light"
+        type="button"
+        *ngIf="active"
+        (click)="resetHandler(f);">
+        RESET
+      </button>
+    </div>
+  </form>

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import Device from './model/device.model';
-import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-catalog',
@@ -9,55 +9,56 @@ import { NgForm } from '@angular/forms';
   styleUrl: './catalog.component.css'
 })
 export class CatalogComponent {
-devices:Device[] = [];
+  devices: Device[] = [];
+  active: Device | null = null;
 
-active: Device | null = null;
-
-  constructor(private http:HttpClient) {
-    this.getAll()
-   }
-
-setActive(device:Device) {
-  this.active = device;
-}
-
-  getAll():void {
-this.http.get<Device[]>("http://localhost:3000/devices")
-.subscribe(result => this.devices = result )
+  constructor(private http: HttpClient) {
+    this.getAll();
   }
 
-  deleteItem(device:Device) {
-    this.http.delete<Device[]>(`http://localhost:3000/devices/${device.id}`)
-    .subscribe(() => {
-      this.devices = this.devices.filter((item) => item.id !== device.id)
-    })
+  getAll() {
+    this.http.get<Device[]>('http://localhost:3000/devices')
+      .subscribe(result => this.devices = result);
   }
 
-  save(form:NgForm) {
-if (this.active) {
-  this.update(form)
-} else {
-      this.http.post<Device>("http://localhost:3000/devices", form.value)
+
+  save(device: Device) {
+    if (this.active?.id) {
+      this.edit(device);
+    } else {
+      this.add(device);
+    }
+  }
+
+  add(device: Device) {
+    this.http.post<Device>(`http://localhost:3000/devices/`, device)
       .subscribe(result => {
-        this.devices.push(result)
-        form.reset()
-      })
-}
+        this.devices.push(result);
+        this.active = null;
+      });
   }
 
-  update(form:NgForm) {
-this.http.patch<Device>(`http://localhost:3000/devices/${this.active?.id}`, form.value)
-.subscribe(res => {
-  const index = this.devices.findIndex(d => d.id === this.active?.id);
-  this.devices[index] = res;
-  form.reset();
-  this.active = null
-})
+  deleteHandler(device: Device) {
+    this.http.delete(`http://localhost:3000/devices/${device.id}`)
+      .subscribe(() => {
+        const index = this.devices.findIndex(d => d.id === device.id);
+        this.devices.splice(index, 1);
+      });
   }
 
-  reset(form:NgForm) {
+  edit(device: Device) {
+    this.http.patch<Device>(`http://localhost:3000/devices/${this.active?.id}`, device)
+      .subscribe(res => {
+        const index = this.devices.findIndex(d => d.id === this.active?.id);
+        this.devices[index] = res;
+      });
+  }
+
+  setActive(device: Device) {
+    this.active = device;
+  }
+
+  reset() {
     this.active = null;
-    form.reset();
   }
-
 }

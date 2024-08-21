@@ -3,27 +3,13 @@
         <h3>Elemento selezionato:</h3>
         <h4>Nome:{{active.label}} Prezzo:{{active.price}}</h4>
     </div>
-  <form #f="ngForm" (submit)="save(f)">
-    <input type="text"
-     [ngModel]="active?.label"
-      name="label"
-      class="input-group my-2"
-      placeholder="Inserisci modello"
-      required>
-      
-      <input type="number"
-      [ngModel]="active?.price"
-       name="price"
-      class="input-group"
-      placeholder="Inserisci il prezzo"
-      >
-      <div class="btn-group my-3">
-<button class="btn btn-info" type="submit">{{active ? 'Modifica':'Aggiungi'}}</button>
-<button *ngIf="active" type="button" class="btn btn-warning ms-2" (click)="reset(f)">Reset</button>
-</div>
-  </form>
+  <app-catalog-form
+  [active]="active"
+  (save)="save($event)"
+  (reset)="reset()"
+  ></app-catalog-form>
    <app-catalog-list [devices]="devices"
    [active]="active"
    (setActive)="setActive($event)"
-   (delete)="deleteItem($event)"></app-catalog-list>
+   (delete)="deleteHandler($event)"></app-catalog-list>
 </div>

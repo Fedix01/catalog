@@ -1,9 +1,9 @@
 {
   "devices": [
     {
-      "label": "IPhone X",
+      "label": "IPhone Xxx",
       "os": "ios",
-      "price": 1200,
+      "price": 1201,
       "rate": 4,
       "memory": 20,
       "desc": "This device is too expensive!!!!",
